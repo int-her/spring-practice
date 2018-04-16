@@ -7,6 +7,7 @@ buildscript {
             , mybatis : '3.4.6'
             , mybatis_spring : '1.3.2'
             , lombok : '1.16.18'
+            , jackson : '2.9.5'
     ]
 
     repositories {
@@ -36,7 +37,12 @@ dependencies {
     compile("org.springframework:spring-webmvc:${versions.spring}")
     compile("org.springframework:spring-jdbc:${versions.spring}")
 
+    compile("org.mybatis:mybatis:${versions.mybatis}")
     compile("org.mybatis:mybatis-spring:${versions.mybatis_spring}")
+
+    compile("mysql:mysql-connector-java:${versions.mysql}")
+
+    compile("com.fasterxml.jackson.core:jackson-databind:${versions.jackson}")
 
     compile("javax.servlet:jstl:1.2")
     compile("javax.servlet:javax.servlet-api:3.1.0")
