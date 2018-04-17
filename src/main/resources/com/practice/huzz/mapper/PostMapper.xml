@@ -6,6 +6,7 @@
     `title` AS `title`,
     `subtitle` AS `subtitle`,
     `content` AS `content`,
+    `type` AS `type`,
     `regist_datetime` AS `registDatetime`,
     `update_datetime` AS `updateDatetime`
   </sql>
@@ -21,20 +22,20 @@
 
   <insert id="insertPost2">
     INSERT INTO post
-    (`title`, `subtitle`, `content`, `regist_datetime`, `update_datetime`)
+    (`title`, `subtitle`, `content`, `type`, `regist_datetime`, `update_datetime`)
     VALUES
-    (#{title}, #{subtitle}, #{content}, NOW(), NOW())
+    (#{title}, #{subtitle}, #{content}, #{type}, NOW(), NOW())
   </insert>
 
   <update id="updatePostByUidAndEntity2">
     UPDATE post
     <set>
-      <if test="title != null">`title` = #{title},</if>
-      <if test="subtitle != null">`subtitle` = #{subtitle},</if>
-      <if test="content != null">`content` = #{content},</if>
+      <if test="#{entity.title} != null">`title` = #{entity.title},</if>
+      <if test="#{entity.subtitle} != null">`subtitle` = #{entity.subtitle},</if>
+      <if test="#{entity.content} != null">`content` = #{entity.content},</if>
       `update_datetime` = NOW()
     </set>
-    WHERE `uid` = #{uid}
+    WHERE `uid` = #{entity.uid}
   </update>
 
   <delete id="deletePostByUid2">
