@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.practice.huzz.mapper.PostMapper">
+<mapper namespace="com.huzz.practice.mapper.PostMapper">
   <sql id="post">
     `uid` AS `uid`,
     `title` AS `title`,
@@ -13,11 +13,17 @@
 
   <!-- SELECT 결과값을 자동으로 resultType 객체로 변환한다. 이 때 column의 이름은 중요하지 않고 순서가 맞아야 한다.
   아마도 Map으로 변환하면 컬럼 이름이 키로 들어갈 것 같다(안해봄). -->
-  <select id="selectPostByUid2" resultType="com.practice.huzz.entity.PostEntity">
+  <select id="selectPostByUid2" resultType="com.huzz.practice.entity.PostEntity">
     SELECT
     <include refid="post"/>
     FROM post
     WHERE `uid` = #{uid}
+  </select>
+
+  <select id="selectAllPostList" resultType="com.huzz.practice.entity.PostEntity">
+    SELECT
+    <include refid="post"/>
+    FROM post
   </select>
 
   <insert id="insertPost2">
